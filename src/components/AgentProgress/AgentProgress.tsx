@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+
 import React from 'react';
 import { Clock, Loader2, Check, X } from 'lucide-react';
 import type { AgentStep } from '../../types/discharge.types';

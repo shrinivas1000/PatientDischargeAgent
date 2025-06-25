@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { JsonInput } from './components/JsonInput/JsonInput';
 import { AgentProgress } from './components/AgentProgress/AgentProgress';
 import { OutputViewer } from './components/OutputViewer/OutputViewer';
