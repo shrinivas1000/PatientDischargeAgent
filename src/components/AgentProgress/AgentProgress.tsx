@@ -37,7 +37,7 @@ export const AgentProgress: React.FC<AgentProgressProps> = ({ steps, isVisible }
       <h2 className="text-lg font-semibold mb-4">Agent Pipeline Progress</h2>
       
       <div className="space-y-2">
-        {steps.map((step, index) => (
+        {steps.map((step) => (
           <div key={step.id} className={getStepClass(step.status)}>
             <span className="step-icon">
               {getStepIcon(step.status)}
