@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { DischargeInput } from '../types/discharge.types';
 
-const BASE_URL = 'http://74.225.219.71';
+const BASE_URL = '';
 const FLOW_ID = '66536226-403a-47fd-b1cb-2c7b6cba2ebb';
 
 export class LangflowService {
