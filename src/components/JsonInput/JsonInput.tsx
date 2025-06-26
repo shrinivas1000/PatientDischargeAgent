@@ -66,16 +66,38 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
 
   return (
     <div className="input-section">
-      <h2 style={{ fontSize: '24px', fontWeight: '600', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <FileText size={24} />
+      <h2 style={{ 
+        fontSize: '24px', 
+        fontWeight: '700', 
+        marginBottom: '20px', 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '10px',
+        color: '#2d1810',
+        background: 'none',
+        backgroundClip: 'unset',
+        WebkitBackgroundClip: 'unset',
+        WebkitTextFillColor: 'unset',
+        filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))'
+      }}>
+        <FileText size={24} style={{ color: '#2d1810' }} />
         Patient Discharge Information
       </h2>
       
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         {/* Patient Basic Info - 2 columns */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
           <div>
-            <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              fontWeight: '600', 
+              color: '#92400e', 
+              marginBottom: '8px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px',
+              letterSpacing: '0.5px'
+            }}>
               <User size={16} />
               Patient Name
             </label>
@@ -88,10 +110,26 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
                 width: '100%', 
                 padding: '12px', 
                 fontSize: '16px', 
-                border: '2px solid #d1d5db', 
-                borderRadius: '6px',
+                border: '1px solid rgba(180, 83, 9, 0.2)', 
+                borderRadius: '12px',
                 outline: 'none',
-                backgroundColor: 'white'
+                background: 'rgba(255, 255, 255, 0.4)',
+                color: '#4a3728',
+                backdropFilter: 'blur(8px)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.02)'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'rgba(251, 191, 36, 0.5)';
+                e.target.style.boxShadow = '0 0 0 3px rgba(251, 191, 36, 0.15), 0 4px 16px rgba(251, 191, 36, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.6)';
+                e.target.style.transform = 'translateY(-1px)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(180, 83, 9, 0.2)';
+                e.target.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.4)';
+                e.target.style.transform = 'translateY(0)';
               }}
               placeholder="Maria Jones"
               required
@@ -99,7 +137,16 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
           </div>
           
           <div>
-            <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              fontWeight: '600', 
+              color: '#92400e', 
+              marginBottom: '8px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px',
+              letterSpacing: '0.5px'
+            }}>
               <FileText size={16} />
               Diagnosis
             </label>
@@ -112,10 +159,26 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
                 width: '100%', 
                 padding: '12px', 
                 fontSize: '16px', 
-                border: '2px solid #d1d5db', 
-                borderRadius: '6px',
+                border: '1px solid rgba(180, 83, 9, 0.2)', 
+                borderRadius: '12px',
                 outline: 'none',
-                backgroundColor: 'white'
+                background: 'rgba(255, 255, 255, 0.4)',
+                color: '#4a3728',
+                backdropFilter: 'blur(8px)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.02)'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'rgba(251, 191, 36, 0.5)';
+                e.target.style.boxShadow = '0 0 0 3px rgba(251, 191, 36, 0.15), 0 4px 16px rgba(251, 191, 36, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.6)';
+                e.target.style.transform = 'translateY(-1px)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(180, 83, 9, 0.2)';
+                e.target.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.4)';
+                e.target.style.transform = 'translateY(0)';
               }}
               placeholder="Pneumonia"
               required
@@ -124,9 +187,18 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
         </div>
 
         {/* Language and Phone - 2 columns */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
           <div>
-            <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              fontWeight: '600', 
+              color: '#92400e', 
+              marginBottom: '8px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px',
+              letterSpacing: '0.5px'
+            }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m5 8 6 6"/>
                 <path d="m4 14 6-6 2-3"/>
@@ -145,10 +217,26 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
                 width: '100%', 
                 padding: '12px', 
                 fontSize: '16px', 
-                border: '2px solid #d1d5db', 
-                borderRadius: '6px',
+                border: '1px solid rgba(180, 83, 9, 0.2)', 
+                borderRadius: '12px',
                 outline: 'none',
-                backgroundColor: 'white'
+                background: 'rgba(255, 255, 255, 0.4)',
+                color: '#4a3728',
+                backdropFilter: 'blur(8px)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.02)'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'rgba(251, 191, 36, 0.5)';
+                e.target.style.boxShadow = '0 0 0 3px rgba(251, 191, 36, 0.15), 0 4px 16px rgba(251, 191, 36, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.6)';
+                e.target.style.transform = 'translateY(-1px)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(180, 83, 9, 0.2)';
+                e.target.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.4)';
+                e.target.style.transform = 'translateY(0)';
               }}
             >
               <option value="sp">Spanish</option>
@@ -159,7 +247,16 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
           </div>
           
           <div>
-            <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              fontWeight: '600', 
+              color: '#92400e', 
+              marginBottom: '8px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px',
+              letterSpacing: '0.5px'
+            }}>
               <Phone size={16} />
               Phone Number
             </label>
@@ -172,10 +269,26 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
                 width: '100%', 
                 padding: '12px', 
                 fontSize: '16px', 
-                border: '2px solid #d1d5db', 
-                borderRadius: '6px',
+                border: '1px solid rgba(180, 83, 9, 0.2)', 
+                borderRadius: '12px',
                 outline: 'none',
-                backgroundColor: 'white'
+                background: 'rgba(255, 255, 255, 0.4)',
+                color: '#4a3728',
+                backdropFilter: 'blur(8px)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.02)'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'rgba(251, 191, 36, 0.5)';
+                e.target.style.boxShadow = '0 0 0 3px rgba(251, 191, 36, 0.15), 0 4px 16px rgba(251, 191, 36, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.6)';
+                e.target.style.transform = 'translateY(-1px)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(180, 83, 9, 0.2)';
+                e.target.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.4)';
+                e.target.style.transform = 'translateY(0)';
               }}
               placeholder="+1-555-123-4567"
               required
@@ -185,7 +298,16 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
 
         {/* Medications - Full width */}
         <div>
-          <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <label style={{ 
+            fontSize: '14px', 
+            fontWeight: '600', 
+            color: '#92400e', 
+            marginBottom: '8px', 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '6px',
+            letterSpacing: '0.5px'
+          }}>
             <Pill size={16} />
             Medications
           </label>
@@ -198,20 +320,45 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
               width: '100%', 
               padding: '12px', 
               fontSize: '16px', 
-              border: '2px solid #d1d5db', 
-              borderRadius: '6px',
+              border: '1px solid rgba(180, 83, 9, 0.2)', 
+              borderRadius: '12px',
               outline: 'none',
-              backgroundColor: 'white'
+              background: 'rgba(255, 255, 255, 0.4)',
+              color: '#4a3728',
+              backdropFilter: 'blur(8px)',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.02)'
+            }}
+            onFocus={(e) => {
+              e.target.style.borderColor = 'rgba(251, 191, 36, 0.5)';
+              e.target.style.boxShadow = '0 0 0 3px rgba(251, 191, 36, 0.15), 0 4px 16px rgba(251, 191, 36, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.6)';
+              e.target.style.transform = 'translateY(-1px)';
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = 'rgba(180, 83, 9, 0.2)';
+              e.target.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.4)';
+              e.target.style.transform = 'translateY(0)';
             }}
             placeholder="Azithromycin 500mg, Paracetamol 650mg"
             required
           />
-          <p style={{ fontSize: '12px', color: '#6b7280', marginTop: '6px' }}>Separate multiple medications with commas</p>
+          <p style={{ fontSize: '12px', color: 'rgba(116, 87, 64, 0.7)', marginTop: '5px' }}>Separate multiple medications with commas</p>
         </div>
 
         {/* Instructions - Full width */}
         <div>
-          <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <label style={{ 
+            fontSize: '14px', 
+            fontWeight: '600', 
+            color: '#92400e', 
+            marginBottom: '8px', 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '6px',
+            letterSpacing: '0.5px'
+          }}>
             <Calendar size={16} />
             Doctor Instructions
           </label>
@@ -223,12 +370,29 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
               width: '100%', 
               padding: '12px', 
               fontSize: '16px', 
-              border: '2px solid #d1d5db', 
-              borderRadius: '6px',
+              border: '1px solid rgba(180, 83, 9, 0.2)', 
+              borderRadius: '12px',
               outline: 'none',
-              minHeight: '100px',
+              minHeight: '90px',
               resize: 'vertical',
-              backgroundColor: 'white'
+              background: 'rgba(255, 255, 255, 0.4)',
+              color: '#4a3728',
+              backdropFilter: 'blur(8px)',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.02)',
+              fontFamily: 'inherit'
+            }}
+            onFocus={(e) => {
+              e.target.style.borderColor = 'rgba(251, 191, 36, 0.5)';
+              e.target.style.boxShadow = '0 0 0 3px rgba(251, 191, 36, 0.15), 0 4px 16px rgba(251, 191, 36, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.6)';
+              e.target.style.transform = 'translateY(-1px)';
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = 'rgba(180, 83, 9, 0.2)';
+              e.target.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.02)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.4)';
+              e.target.style.transform = 'translateY(0)';
             }}
             placeholder="Take rest. Drink fluids. Complete full course of antibiotics."
             required
@@ -239,28 +403,60 @@ export const JsonInput: React.FC<JsonInputProps> = ({ onSubmit, isLoading }) => 
           <button
             type="submit"
             disabled={isLoading}
+            className="btn btn-primary"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '10px',
               padding: '12px 32px',
               fontSize: '16px',
               fontWeight: '600',
-              backgroundColor: isLoading ? '#9ca3af' : '#071936',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: isLoading ? 'not-allowed' : 'pointer'
+              background: isLoading ? 'rgba(45, 24, 16, 0.3)' : '#2d1810',
+              color: '#ffffff',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              borderRadius: '12px',
+              cursor: isLoading ? 'not-allowed' : 'pointer',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+              backdropFilter: 'blur(8px)',
+              boxShadow: isLoading ? 'none' : '0 4px 16px rgba(45, 24, 16, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+            }}
+            onMouseEnter={(e) => {
+              if (!isLoading) {
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = '0 8px 32px rgba(45, 24, 16, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                e.currentTarget.style.background = '#3d2420';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!isLoading) {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(45, 24, 16, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                e.currentTarget.style.background = '#2d1810';
+              }
+            }}
+            onMouseDown={(e) => {
+              if (!isLoading) {
+                e.currentTarget.style.transform = 'translateY(-1px)';
+              }
             }}
           >
             {isLoading ? (
               <>
-                <div style={{ width: '16px', height: '16px', border: '2px solid white', borderTop: '2px solid transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                <div className="animate-spin" style={{ 
+                  width: '20px', 
+                  height: '20px', 
+                  border: '2px solid white', 
+                  borderTop: '2px solid transparent', 
+                  borderRadius: '50%',
+                  filter: 'drop-shadow(0 2px 4px rgba(251, 191, 36, 0.4))'
+                }}></div>
                 Processing Discharge...
               </>
             ) : (
               <>
-                <Play size={16} />
+                <Play size={20} />
                 Start Discharge Process
               </>
             )}

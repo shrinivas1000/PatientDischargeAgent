@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
-import { Check, ChevronDown, ChevronUp, Download } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp} from 'lucide-react';
 import type { AgentStep } from '../../types/discharge.types';
+import { QuizConversation } from '../QuizConversation/QuizConversation';
 
 interface OutputViewerProps {
   steps: AgentStep[];
   isVisible: boolean;
 }
+
+// Helper function to format agent names
+const formatAgentName = (name: string): string => {
+  return name
+    .replace(/([A-Z])/g, ' $1') // Add space before capital letters
+    .replace(/Agent$/, ' Agent') // Replace "Agent" suffix with " Agent"
+    .trim(); // Remove any leading/trailing spaces
+};
 
 // Helper function to format agent output as clean text
 const formatAgentOutput = (stepName: string, output: any): string => {
@@ -48,25 +57,16 @@ const formatAgentOutput = (stepName: string, output: any): string => {
       }
       return multilingual || 'No translations available';
     
-    case 'PatientMessengerAgent':
-      if (output.interaction_log && Array.isArray(output.interaction_log)) {
-        const conversation = output.interaction_log.map((msg: any) => 
-          `${msg.sender || 'Unknown'}: ${msg.message || msg.text || ''}`
-        ).join('\n');
-        return `Patient Conversation:\n\n${conversation}`;
-      }
-      return 'No patient interactions recorded';
-    
     case 'DischargePackagerAgent':
       if (output.output) {
         let discharge = 'Discharge Package Created:\n\n';
         if (output.output.pdf_summary_path) {
-          discharge += `📄 PDF Summary: ${output.output.pdf_summary_path}\n\n`;
+          discharge += `PDF Summary: ${output.output.pdf_summary_path}\n\n`;
         }
         if (output.output.ehr_json) {
           const ehr = output.output.ehr_json;
           
-          discharge += `📋 EHR Summary:\n`;
+          discharge += `EHR Summary:\n`;
           discharge += `   Patient ID: ${ehr.patient_id || 'N/A'}\n`;
           discharge += `   Patient Name: Maria Jones\n`;
           discharge += `   Diagnosis: ${ehr.diagnosis || 'N/A'}\n`;
@@ -84,26 +84,7 @@ const formatAgentOutput = (stepName: string, output: any): string => {
 };
 
 // Helper function to download EHR data
-const downloadEHR = (output: any, patientName: string = 'Patient') => {
-  if (!output?.output?.ehr_json) {
-    alert('No EHR data available for download');
-    return;
-  }
 
-  const ehrData = output.output.ehr_json;
-  const filename = `EHR_${patientName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.json`;
-  
-  const blob = new Blob([JSON.stringify(ehrData, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-};
 
 export const OutputViewer: React.FC<OutputViewerProps> = ({ steps, isVisible }) => {
   const [expandedSteps, setExpandedSteps] = useState<Set<string>>(new Set());
@@ -134,21 +115,11 @@ export const OutputViewer: React.FC<OutputViewerProps> = ({ steps, isVisible }) 
   }
 
   // Find discharge packager step for EHR download
-  const dischargeStep = completedSteps.find(step => step.name === 'DischargePackagerAgent');
 
   return (
     <div className="output-section">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Agent Outputs</h2>
-        {dischargeStep && (
-          <button
-            className="btn btn-primary flex items-center gap-2"
-            onClick={() => downloadEHR(dischargeStep.output, 'Maria_Jones')}
-          >
-            <Download size={16} />
-            Download EHR
-          </button>
-        )}
       </div>
       
       <div className="space-y-4">
@@ -157,7 +128,7 @@ export const OutputViewer: React.FC<OutputViewerProps> = ({ steps, isVisible }) 
             <div className="output-header">
               <div className="flex items-center gap-2">
                 <Check size={16} className="text-green-600" />
-                <h3 className="font-medium">{step.name}</h3>
+                <h3 className="font-medium">{formatAgentName(step.name)}</h3>
               </div>
               <button
                 className="btn btn-secondary flex items-center gap-2"
@@ -171,7 +142,7 @@ export const OutputViewer: React.FC<OutputViewerProps> = ({ steps, isVisible }) 
                 ) : (
                   <>
                     <ChevronDown size={16} />
-                    Show Output
+                    {step.name === 'PatientMessengerAgent' ? 'Show Conversation' : 'Show Output'}
                   </>
                 )}
               </button>
@@ -179,9 +150,15 @@ export const OutputViewer: React.FC<OutputViewerProps> = ({ steps, isVisible }) 
             
             {expandedSteps.has(step.id) && (
               <div className="output-content">
-                <pre className="whitespace-pre-wrap text-sm leading-relaxed">
-                  {formatAgentOutput(step.name, step.output)}
-                </pre>
+                {step.name === 'PatientMessengerAgent' ? (
+                  <QuizConversation 
+                    interactionLog={step.output?.interaction_log || []}
+                  />
+                ) : (
+                  <pre className="whitespace-pre-wrap text-sm leading-relaxed">
+                    {formatAgentOutput(step.name, step.output)}
+                  </pre>
+                )}
               </div>
             )}
           </div>

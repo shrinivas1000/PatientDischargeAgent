@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-
 import React from 'react';
 import { Clock, Loader2, Check, X } from 'lucide-react';
 import type { AgentStep } from '../../types/discharge.types';
@@ -9,6 +8,14 @@ interface AgentProgressProps {
   steps: AgentStep[];
   isVisible: boolean;
 }
+
+// Helper function to format agent names
+const formatAgentName = (name: string): string => {
+  return name
+    .replace(/([A-Z])/g, ' $1') // Add space before capital letters
+    .replace(/Agent$/, ' Agent') // Replace "Agent" suffix with " Agent"
+    .trim(); // Remove any leading/trailing spaces
+};
 
 export const AgentProgress: React.FC<AgentProgressProps> = ({ steps, isVisible }) => {
   if (!isVisible) return null;
@@ -43,10 +50,10 @@ export const AgentProgress: React.FC<AgentProgressProps> = ({ steps, isVisible }
               {getStepIcon(step.status)}
             </span>
             <span className="flex-1">
-              {step.name}
+              {formatAgentName(step.name)}
             </span>
             {step.status === 'running' && (
-              <span className="text-sm text-blue-600">Working...</span>
+              <span className="text-sm text-blue-600"></span>
             )}
             {step.status === 'error' && step.error && (
               <span className="text-sm text-red-600">{step.error}</span>
