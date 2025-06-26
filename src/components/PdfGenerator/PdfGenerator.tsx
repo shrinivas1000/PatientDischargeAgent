@@ -59,7 +59,7 @@ export const PdfGenerator: React.FC<PdfGeneratorProps> = ({ dischargeOutput, sum
         onClick={generatePDF}
       >
         <Download size={16} />
-        Download PDF Summary
+        Download EHR
       </button>
     </div>
   );
