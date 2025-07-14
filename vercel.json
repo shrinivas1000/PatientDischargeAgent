@@ -6,6 +6,10 @@
       "destination": "http://74.225.219.71/api/v1/run/$1"
     },
     {
+      "source": "/api/v1/run/(.*)",
+      "destination": "http://74.225.219.71/api/v1/run/$1"
+    },
+    {
       "source": "/agents/patient-discharge-agent/(.*)",
       "destination": "/agents/patient-discharge-agent/index.html"
     }
